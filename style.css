@@ -1,0 +1,68 @@
+body 
+{
+    background-color:#fff;
+    font-family: 'Nunito', sans-serif;
+}
+
+.gwt-card
+{
+    display:inline-block;
+    min-width:240px;
+}
+
+.group
+{
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.group.given
+{
+    background-color:#76CBDE;
+    border-top-left-radius:15px;
+    border-top-right-radius:15px;
+}
+
+.group.when
+{
+    background-color:#A5DE79;
+}
+
+.group.then
+{
+    background-color:#FAEF97;
+    border-bottom-left-radius:15px;
+    border-bottom-right-radius:15px;
+}
+
+.group .row
+{
+    display:flex;
+    padding-top:3px;
+    padding-bottom:3px;
+}
+.group .row:last-child
+{
+    border-bottom:none;
+}
+
+.group label
+{
+    display:inline-block;
+    width:50px;
+    text-align:right;
+    font-weight:bold;
+    flex-grow:0;
+}
+
+.group span
+{
+    padding-left:5px;
+    padding-right:20px;
+    font-weight:bold;
+    flex-grow:1;
+}
+.group span:focus
+{
+    outline:none;
+}
