@@ -5,18 +5,50 @@
         <link rel="stylesheet" type="text/css" href="./style.css" />
     </head>
     <body>
-        <div class="gwt-card">
-            <div class="group given">
-                <div class="row"><label>Given</label> <span contenteditable="true"></span></div>
-                <div class="row"><label>and</label> <span contenteditable="true"></span></div>
+        <h1 class="header">Given - When - Then</h1>
+        <div class="body">
+            <div>
+                <div class="gwt-card">
+                    <div class="group given">
+                        <div class="row"><label>Given</label> <span contenteditable="true">lTeamID is on the job card</span></div>
+                        <div class="row"><label>and</label> <span contenteditable="true">I have permission to edit lTeamID</span></div>
+                    </div>
+                    <div class="group when">
+                        <div class="row"><label>When</label> <span contenteditable="true">I create a new job</span></div>
+                    </div>
+                    <div class="group then">
+                        <div class="row"><label>Then</label> <span contenteditable="true">I should see the dropdown</span></div>
+                        <div class="row"><label>and</label> <span contenteditable="true">it should contain all my teams</span></div>
+                        <div class="row"><label>and</label> <span contenteditable="true">my primary team should be selected by default</span></div>
+                    </div>
+                </div>
             </div>
-            <div class="group when">
-                <div class="row"><label>When</label> <span contenteditable="true"></span></div>
+            <div>
+                <div class="gwt-card">
+                    <div class="group given">
+                        <div class="row"><label>Given</label> <span contenteditable="true"></span></div>
+                    </div>
+                    <div class="group when">
+                        <div class="row"><label>When</label> <span contenteditable="true"></span></div>
+                    </div>
+                    <div class="group then">
+                        <div class="row"><label>Then</label> <span contenteditable="true"></span></div>
+                    </div>
+                </div>
             </div>
-            <div class="group then">
-                <div class="row"><label>Then</label> <span contenteditable="true"></span></div>
-                <div class="row"><label>and</label> <span contenteditable="true"></span></div>
-                <div class="row"><label>and</label> <span contenteditable="true"></span></div>
+            <div>
+                <div class="gwt-card">
+                    <div class="group given">
+                        <div class="row"><label>Given</label> <span contenteditable="true">lTeamID is NOT on the job card</span></div>
+                    </div>
+                    <div class="group when">
+                        <div class="row"><label>When</label> <span contenteditable="true">I create a new job</span></div>
+                        <div class="row"><label>and</label> <span contenteditable="true">I save that job</span></div>
+                    </div>
+                    <div class="group then">
+                        <div class="row"><label>Then</label> <span contenteditable="true">The job should be set against my primary team</span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
