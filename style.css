@@ -28,7 +28,7 @@ body
     display:inline-block;
     min-width:300px;
 
-    margin-top:15px;
+    margin-top:10px;
 
     position:relative;
     left:50%;
@@ -91,4 +91,31 @@ body
 .group span:focus
 {
     outline:none;
+}
+
+.add-card
+{
+    text-align:center;
+    padding-top:10px;
+}
+.add-card i
+{
+    color:rgba(0, 0, 0, 0);
+    transition:color .25s;
+    cursor:pointer;
+}
+.card-wrapper:hover + .add-card i, .add-card:hover i
+{
+    color:rgba(0, 0, 0, .71);
+    transition:color .25s;
+}
+.add-card i:hover
+{
+    transform:scale(1.2);
+    transition:transform .1s;
+}
+.add-card i:active
+{
+    transform:scale(1);
+    transition:transform .1s;
 }
