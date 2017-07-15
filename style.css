@@ -9,7 +9,7 @@ body
 .header
 {
     color:white;
-    background-color:#3488C0;
+    background-color:#009688;
     font-size:40px;
     margin:0;
     text-align:center;
@@ -19,14 +19,22 @@ body
 
 .body
 {
-    width:80%;
+    width:95%;
     margin:0 auto 0 auto;
+}
+@media screen and (max-width: 700px)
+{
+    .body
+    {
+        width:100%;
+    }
 }
 
 .gwt-card
 {
     display:inline-block;
     min-width:300px;
+    max-width:80%;
 
     margin-top:10px;
 
@@ -75,6 +83,7 @@ body
 {
     display:inline-block;
     width:60px;
+    min-width:60px;
     text-align:right;
     font-weight:bold;
     flex-grow:0;
@@ -93,6 +102,26 @@ body
     outline:none;
 }
 
+.check-off
+{
+    position:absolute;
+    left:55%;
+    top:50%;
+    color:rgba(96, 125, 139, 0);
+    transition:color .25s;
+}
+.check-off i
+{
+    line-height:0;
+    cursor:pointer;
+}
+.card-wrapper:hover .check-off
+{
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
+    color:rgba(96, 125, 139, 1);
+    transition:color .25s;
+}
+
 .add-card
 {
     text-align:center;
@@ -100,13 +129,14 @@ body
 }
 .add-card i
 {
-    color:rgba(0, 0, 0, 0);
+    color:rgba(96, 125, 139, 0);
     transition:color .25s;
     cursor:pointer;
 }
 .card-wrapper:hover + .add-card i, .add-card:hover i
 {
-    color:rgba(0, 0, 0, .71);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
+    color:rgba(96, 125, 139, 1);
     transition:color .25s;
 }
 .add-card i:hover
