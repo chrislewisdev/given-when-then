@@ -6,7 +6,7 @@ var Card = React.createClass(
             React.createElement('div', { className: 'card-wrapper' },
                 React.createElement('div', { className: 'gwt-card' },
                     React.createElement('div', { className: 'remove-card' },
-                        React.createElement('i', { className: 'button fa fa-times-circle fa-2x' })
+                        React.createElement('i', { className: 'button fa fa-times-circle fa-2x', onClick: this.props.onDeleteCard })
                     ),
                     React.createElement(Group, { type: 'given', rows: this.props.given, takeFocus: this.props.takeFocus }),
                     React.createElement(Group, { type: 'when', rows: this.props.when  }),

@@ -26,6 +26,19 @@ var App = React.createClass(
         };
     },
 
+    onDeleteCard: function(index)
+    {
+        var self = this;
+        return function()
+        {
+            self.setState(function(previousState)
+            {
+                if (previousState.cards.length > 1) previousState.cards.splice(index, 1);
+                return { cards: previousState.cards };
+            });
+        };
+    },
+
     render: function()
     {
         var self = this;
@@ -39,6 +52,7 @@ var App = React.createClass(
                 when: card.when, 
                 then: card.then,
                 onAddCard: self.onAddCard(index),
+                onDeleteCard: self.onDeleteCard(index),
                 takeFocus: card.id === self.state.focusId
             });
         });
