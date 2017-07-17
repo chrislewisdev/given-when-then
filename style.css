@@ -82,8 +82,8 @@ body
 .group label
 {
     display:inline-block;
-    width:60px;
-    min-width:60px;
+    width:70px;
+    min-width:70px;
     text-align:right;
     font-weight:bold;
     flex-grow:0;
