@@ -15,30 +15,38 @@ var Group = React.createClass(
 
     onAddLine: function(index)
     {
-        this.setState(function(previousState)
+        var self = this;
+        return function()
         {
-            previousState.rows.splice(index, 0, { id: previousState.counter, content: ''});
-            return { 
-                rows: previousState.rows, 
-                focusId: previousState.counter, 
-                counter: previousState.counter + 1
-            };
-        });
+            self.setState(function(previousState)
+            {
+                previousState.rows.splice(index + 1, 0, { id: previousState.counter, content: ''});
+                return { 
+                    rows: previousState.rows, 
+                    focusId: previousState.counter, 
+                    counter: previousState.counter + 1
+                };
+            });
+        };
     },
 
     onDeleteLine: function(index)
     {
-        if (index > 0)
+        var self = this;
+        return function()
         {
-            this.setState(function(previousState)
+            if (index > 0)
             {
-                previousState.rows.splice(index, 1);
-                return { 
-                    rows: previousState.rows, 
-                    focusId: previousState.rows[index - 1].id
-                };
-            });
-        }
+                self.setState(function(previousState)
+                {
+                    previousState.rows.splice(index, 1);
+                    return { 
+                        rows: previousState.rows, 
+                        focusId: previousState.rows[index - 1].id
+                    };
+                });
+            }
+        };
     },
 
     componentDidMount: function()
@@ -58,11 +66,10 @@ var Group = React.createClass(
                 return React.createElement(Row, 
                 {
                     key: row.id, 
-                    index: index, 
                     label: label, 
                     content: row.content, 
-                    onEnter: self.onAddLine,
-                    onDeleteLine: self.onDeleteLine,
+                    onNewLine: self.onAddLine(index),
+                    onDeleteLine: self.onDeleteLine(index),
                     takeFocus: row.id === self.state.focusId || self.props.takeFocus && index === 0
                 });
             })

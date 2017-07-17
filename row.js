@@ -17,21 +17,32 @@ var Row = React.createClass(
         if (event.key === 'Enter')
         {
             event.preventDefault();
-            this.props.onEnter(this.props.index + 1);
+            this.props.onNewLine();
         }
         else if (event.key === 'Backspace' && event.target.innerText === '')
         {
-            this.props.onDeleteLine(this.props.index);
+            event.preventDefault();
+            this.props.onDeleteLine();
         }
     },
 
-    componentDidMount: function()
+    takeFocusIfDesired: function()
     {
         if (this.props.takeFocus)
         {
             window.getSelection().selectAllChildren(this.input);
             window.getSelection().collapseToEnd();
         } 
+    },
+
+    componentDidMount: function()
+    {
+        this.takeFocusIfDesired();
+    },
+
+    componentDidUpdate: function()
+    {
+        this.takeFocusIfDesired(); 
     },
 
     render: function()
