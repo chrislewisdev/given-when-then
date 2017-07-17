@@ -35,7 +35,7 @@ var App = React.createClass(
             return React.createElement(Card, 
             {
                 key: card.id,
-                given: card.given, 
+                given: card.given,
                 when: card.when, 
                 then: card.then,
                 onAddCard: self.onAddCard(index),
