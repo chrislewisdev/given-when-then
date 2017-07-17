@@ -15,11 +15,15 @@ var App = React.createClass(
 
     onAddCard: function(index)
     {
-        this.setState(function(previousState)
+        var self = this;
+        return function()
         {
-            previousState.cards.splice(index, 0, { id: previousState.counter, given: [], when: [], then: [] });
-            return { cards: previousState.cards, counter: previousState.counter + 1, focusId: previousState.counter };
-        });
+            self.setState(function(previousState)
+            {
+                previousState.cards.splice(index + 1, 0, { id: previousState.counter, given: [], when: [], then: [] });
+                return { cards: previousState.cards, counter: previousState.counter + 1, focusId: previousState.counter };
+            });
+        };
     },
 
     render: function()
@@ -31,11 +35,10 @@ var App = React.createClass(
             return React.createElement(Card, 
             {
                 key: card.id,
-                index: index,
                 given: card.given, 
                 when: card.when, 
                 then: card.then,
-                onAddCard: self.onAddCard,
+                onAddCard: self.onAddCard(index),
                 takeFocus: card.id === self.state.focusId
             });
         });

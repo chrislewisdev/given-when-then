@@ -1,10 +1,5 @@
 var Card = React.createClass(
 {
-    onAddCard: function()
-    {
-        this.props.onAddCard(this.props.index + 1);
-    },
-
     render: function()
     {
         return React.createElement('div', null, 
@@ -19,7 +14,7 @@ var Card = React.createClass(
                 )
             ),
             React.createElement('div', { className: 'add-card' },
-                React.createElement('i', { className: 'fa fa-plus-circle fa-lg', onClick: this.onAddCard })
+                React.createElement('i', { className: 'fa fa-plus-circle fa-lg', onClick: this.props.onAddCard })
             )    
         );
     }
