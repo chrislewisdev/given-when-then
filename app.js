@@ -39,6 +39,20 @@ var App = React.createClass(
         };
     },
 
+    onWindowKeyPress: function(event)
+    {
+        if (event.code === 'KeyM' && event.ctrlKey)
+        {
+            event.preventDefault();
+            this.onAddCard(this.state.cards.length)();  
+        }
+    },
+
+    componentDidMount: function()
+    {
+        document.addEventListener("keypress", this.onWindowKeyPress);
+    },
+
     render: function()
     {
         var self = this;
