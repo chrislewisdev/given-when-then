@@ -19,7 +19,7 @@ var Group = React.createClass(
         var rows = JSON.parse(JSON.stringify(newProps.rows));
 
         if (rows.length === 0) 
-            rows = [{ id: 0, content: '' }];
+            rows = [''];
 
         this.setState({
             rows: rows.map(function (rowContent) 

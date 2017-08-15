@@ -33,8 +33,6 @@ var Card = React.createClass(
 
     render: function()
     {
-        console.log(this.props);
-
         return React.createElement('div', null, 
             React.createElement('div', { className: 'card-wrapper ' + (this.state.passing === true ? 'passing' : '') },
                 React.createElement('div', { className: 'gwt-card' },
