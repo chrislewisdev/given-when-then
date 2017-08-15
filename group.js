@@ -72,8 +72,6 @@ var Group = React.createClass(
         var self = this;
         return function(value)
         {
-            // console.log('updating group');
-            // console.log(self.state.rows);
             var rows = self.state.rows.map(function (row)
             {
                 return row.content;
@@ -81,7 +79,6 @@ var Group = React.createClass(
 
             rows[index] = value;
 
-            // console.log(rows);
             self.props.onGroupUpdate(rows);
         };
     },

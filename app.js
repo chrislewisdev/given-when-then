@@ -43,15 +43,11 @@ var App = React.createClass(
         {
             self.setState(function(previousState)
             {
-                var cards = JSON.parse(JSON.stringify(previousState.cards));
-                cards[index] = { given: groups.given, when: groups.when, then: groups.then };
+                previousState.cards[index] = { given: groups.given, when: groups.when, then: groups.then };
 
-                localStorage.setItem('cards', JSON.stringify(cards));
+                localStorage.setItem('cards', JSON.stringify(previousState.cards));
 
-                // console.log(groups);
-                // console.log(cards);
-
-                return { cards: cards, focusId: -1 };
+                return { cards: previousState.cards, focusId: -1 };
             });
         };
     },
@@ -73,8 +69,6 @@ var App = React.createClass(
     render: function()
     {
         var self = this;
-
-        console.log(this.state.cards);
 
         var cards = this.state.cards.map(function (card, index)
         {
