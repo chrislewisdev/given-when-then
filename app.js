@@ -18,6 +18,9 @@ var App = React.createClass(
             self.setState(function(previousState)
             {
                 previousState.cards.splice(index + 1, 0, { given: [], when: [], then: [] });
+
+                localStorage.setItem('cards', JSON.stringify(previousState.cards));
+
                 return { cards: previousState.cards, focusId: index };
             });
         };
@@ -31,6 +34,9 @@ var App = React.createClass(
             self.setState(function(previousState)
             {
                 if (previousState.cards.length > 1) previousState.cards.splice(index, 1);
+
+                localStorage.setItem('cards', JSON.stringify(previousState.cards));
+
                 return { cards: previousState.cards };
             });
         };
