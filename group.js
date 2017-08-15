@@ -13,6 +13,24 @@ var Group = React.createClass(
         };
     },
 
+    componentWillReceiveProps: function(newProps)
+    {
+        var counter = 0;
+        var rows = JSON.parse(JSON.stringify(newProps.rows));
+
+        if (rows.length === 0) 
+            rows = [{ id: 0, content: '' }];
+
+        this.setState({
+            rows: rows.map(function (rowContent) 
+            {
+                return { id: counter++, content: rowContent};
+            }),
+            counter: counter,
+            focusId: newProps.focusId
+        });
+    },
+
     onAddLine: function(index)
     {
         var self = this;
@@ -49,6 +67,25 @@ var Group = React.createClass(
         };
     },
 
+    onLineChange: function(index)
+    {
+        var self = this;
+        return function(value)
+        {
+            // console.log('updating group');
+            // console.log(self.state.rows);
+            var rows = self.state.rows.map(function (row)
+            {
+                return row.content;
+            });
+
+            rows[index] = value;
+
+            // console.log(rows);
+            self.props.onGroupUpdate(rows);
+        };
+    },
+
     componentDidMount: function()
     {
         if (this.state.rows.length === 0) 
@@ -70,6 +107,7 @@ var Group = React.createClass(
                     content: row.content, 
                     onNewLine: self.onAddLine(index),
                     onDeleteLine: self.onDeleteLine(index),
+                    onLineChange: self.onLineChange(index),
                     takeFocus: row.id === self.state.focusId || self.props.takeFocus && index === 0
                 });
             })

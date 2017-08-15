@@ -4,6 +4,8 @@ var App = React.createClass(
     {
         var counter = 0;
 
+        console.log(this.props.cards);
+
         return { 
             cards: this.props.cards.map(function (card)
             {
@@ -39,6 +41,26 @@ var App = React.createClass(
         };
     },
 
+    onCardUpdate: function(index)
+    {
+        var self = this;
+        return function(groups)
+        {
+            self.setState(function(previousState)
+            {
+                var cards = JSON.parse(JSON.stringify(previousState.cards));
+                cards[index] = { id: index, given: groups.given, when: groups.when, then: groups.then };
+
+                localStorage.setItem('cards', JSON.stringify(cards));
+
+                // console.log(groups);
+                console.log(cards);
+
+                return { cards: cards, focusId: -1 };
+            });
+        };
+    },
+
     onWindowKeyPress: function(event)
     {
         if (event.code === 'KeyM' && event.ctrlKey)
@@ -57,6 +79,8 @@ var App = React.createClass(
     {
         var self = this;
 
+        console.log(this.state.cards);
+
         var cards = this.state.cards.map(function (card, index)
         {
             return React.createElement(Card, 
@@ -67,6 +91,7 @@ var App = React.createClass(
                 then: card.then,
                 onAddCard: self.onAddCard(index),
                 onDeleteCard: self.onDeleteCard(index),
+                onCardUpdate: self.onCardUpdate(index),
                 takeFocus: card.id === self.state.focusId
             });
         });

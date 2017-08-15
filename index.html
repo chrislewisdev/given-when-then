@@ -21,8 +21,16 @@
         <script>
             window.onload = function()
             {
+                var savedCards = localStorage.getItem('cards');
+                var cards = [{ given: [], when: [], then: []}];
+
+                if (savedCards && savedCards != '')
+                {
+                    cards = JSON.parse(savedCards);
+                }
+
                 ReactDOM.render(
-                    React.createElement(App, { cards: [{ given: [], when: [], then: [] }]}),
+                    React.createElement(App, { cards: cards }),
                     document.getElementById('root')
                 );
             };

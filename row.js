@@ -7,11 +7,6 @@ var groupTypes =
 
 var Row = React.createClass(
 {
-    getInitialState: function()
-    {
-        return { content : this.props.content };
-    },
-
     onKeyDown: function(event)
     {
         if (event.key === 'Enter')
@@ -24,6 +19,11 @@ var Row = React.createClass(
             event.preventDefault();
             this.props.onDeleteLine();
         }
+    },
+
+    onBlur: function(event)
+    {
+        this.props.onLineChange(event.target.innerText);
     },
 
     takeFocusIfDesired: function()
@@ -56,8 +56,9 @@ var Row = React.createClass(
                 contentEditable: true,
                 onKeyDown: self.onKeyDown, 
                 suppressContentEditableWarning: true,
-                ref: function (element) { self.input = element; }
-            }, this.state.content)
+                ref: function (element) { self.input = element; },
+                onBlur: self.onBlur
+            }, this.props.content)
         );
     }
 });
