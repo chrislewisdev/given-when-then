@@ -21,7 +21,7 @@ var App = React.createClass(
 
                 localStorage.setItem('cards', JSON.stringify(previousState.cards));
 
-                return { cards: previousState.cards, focusId: index };
+                return { cards: previousState.cards, focusId: index + 1 };
             });
         };
     },

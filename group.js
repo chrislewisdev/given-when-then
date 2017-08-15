@@ -2,20 +2,17 @@ var Group = React.createClass(
 {
     getInitialState: function()
     {
-        var counter = 0;
-
         return { 
             rows: this.props.rows.map(function (rowContent) 
             {
-                return { id: counter++, content: rowContent};
+                return { content: rowContent};
             }),
-            counter: counter
+            focusId: null
         };
     },
 
     componentWillReceiveProps: function(newProps)
     {
-        var counter = 0;
         var rows = JSON.parse(JSON.stringify(newProps.rows));
 
         if (rows.length === 0) 
@@ -24,10 +21,8 @@ var Group = React.createClass(
         this.setState({
             rows: rows.map(function (rowContent) 
             {
-                return { id: counter++, content: rowContent};
-            }),
-            counter: counter,
-            focusId: newProps.focusId
+                return { content: rowContent};
+            })
         });
     },
 
@@ -36,15 +31,13 @@ var Group = React.createClass(
         var self = this;
         return function()
         {
-            self.setState(function(previousState)
-            {
-                previousState.rows.splice(index + 1, 0, { id: previousState.counter, content: ''});
-                return { 
-                    rows: previousState.rows, 
-                    focusId: previousState.counter, 
-                    counter: previousState.counter + 1
-                };
-            });
+            var rows = self.state.rows.map(function (row) { return row.content; });
+
+            rows.splice(index + 1, 0, '');
+
+            self.props.onGroupUpdate(rows);
+
+            self.setState({ focusId: index + 1 });
         };
     },
 
@@ -55,14 +48,13 @@ var Group = React.createClass(
         {
             if (index > 0)
             {
-                self.setState(function(previousState)
-                {
-                    previousState.rows.splice(index, 1);
-                    return { 
-                        rows: previousState.rows, 
-                        focusId: previousState.rows[index - 1].id
-                    };
-                });
+                var rows = self.state.rows.map(function (row) { return row.content; });
+
+                rows.splice(index, 1);
+
+                self.props.onGroupUpdate(rows);
+
+                self.setState({ focusId: index - 1 });
             }
         };
     },
@@ -72,10 +64,7 @@ var Group = React.createClass(
         var self = this;
         return function(value)
         {
-            var rows = self.state.rows.map(function (row)
-            {
-                return row.content;
-            });
+            var rows = self.state.rows.map(function (row) { return row.content; });
 
             rows[index] = value;
 
@@ -86,7 +75,12 @@ var Group = React.createClass(
     componentDidMount: function()
     {
         if (this.state.rows.length === 0) 
-            this.setState({ rows: [{ id: 0, content: '' }], counter: 1 });
+            this.setState({ rows: [{ content: '' }] });
+    },
+
+    componentDidUpdate: function()
+    {
+        if (this.state.focusId !== null) this.setState({ focusId: null });
     },
 
     render: function()
@@ -99,13 +93,13 @@ var Group = React.createClass(
                 var label = index === 0 ? groupTypes[self.props.type] : 'and';
                 return React.createElement(Row, 
                 {
-                    key: row.id, 
+                    key: index, 
                     label: label, 
                     content: row.content, 
                     onNewLine: self.onAddLine(index),
                     onDeleteLine: self.onDeleteLine(index),
                     onLineChange: self.onLineChange(index),
-                    takeFocus: row.id === self.state.focusId || self.props.takeFocus && index === 0
+                    takeFocus: index === self.state.focusId || self.props.takeFocus && index === 0
                 });
             })
         );
