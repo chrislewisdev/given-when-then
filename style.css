@@ -133,14 +133,14 @@ i.button:active
 .remove-card
 {
     position:absolute;
-    left:-65%;
+    left:-61%;
     top:50%;
 }
 
 .check-off
 {
     position:absolute;
-    left:55%;
+    left:52%;
     top:50%;
 }
 
@@ -148,4 +148,13 @@ i.button:active
 {
     text-align:center;
     padding-top:10px;
+}
+
+@media screen and (max-width: 800px)
+{
+    .card-wrapper i.button, .add-card i.button
+    {
+        text-shadow: 2px 2px 2px rgba(0,0,0,0.14);
+        color:rgba(96, 125, 139, 1);
+    }
 }
