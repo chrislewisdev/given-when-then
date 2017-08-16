@@ -2,12 +2,7 @@ var App = React.createClass(
 {
     getInitialState: function()
     {
-        return { 
-            cards: this.props.cards.map(function (card)
-            {
-                return { given: card.given, when: card.when, then: card.then };
-            })
-        };
+        return { cards: this.props.cards };
     },
 
     onAddCard: function(index)
@@ -45,11 +40,11 @@ var App = React.createClass(
     onCardUpdate: function(index)
     {
         var self = this;
-        return function(groups)
+        return function(groups, passing)
         {
             self.setState(function(previousState)
             {
-                previousState.cards[index] = { given: groups.given, when: groups.when, then: groups.then };
+                previousState.cards[index] = { given: groups.given, when: groups.when, then: groups.then, passing: passing };
 
                 localStorage.setItem('cards', JSON.stringify(previousState.cards));
 
@@ -84,6 +79,7 @@ var App = React.createClass(
                 given: card.given,
                 when: card.when, 
                 then: card.then,
+                passing: card.passing,
                 onAddCard: self.onAddCard(index),
                 onDeleteCard: self.onDeleteCard(index),
                 onCardUpdate: self.onCardUpdate(index),

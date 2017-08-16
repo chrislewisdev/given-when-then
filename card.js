@@ -2,15 +2,17 @@ var Card = React.createClass(
 {
     getInitialState: function()
     {
-        return { passing: false };
+        return { passing: this.props.passing };
+    },
+
+    componentWillReceiveProps: function(newProps)
+    {
+        this.setState({ passing: newProps.passing });
     },
 
     onCheckOff: function(event)
     {
-        this.setState(function (previousState)
-        {
-            return { passing: !previousState.passing };
-        });
+        this.props.onCardUpdate({ given: this.props.given, when: this.props.when, then: this.props.then }, !this.state.passing);
     },
 
     onGroupUpdate: function(type)
@@ -27,7 +29,7 @@ var Card = React.createClass(
 
             groups[type] = rows;
 
-            self.props.onCardUpdate(groups);
+            self.props.onCardUpdate(groups, self.state.passing);
         };
     },
 

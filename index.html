@@ -3,8 +3,8 @@
         <title>Given | When | Then</title>
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-        <script src="https://unpkg.com/react@15/dist/react.js"></script>
-        <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/react@15.6.0/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15.6.0/dist/react-dom.js"></script>
 
         <script src="./row.js"></script>
         <script src="./group.js"></script>
@@ -22,7 +22,7 @@
             window.onload = function()
             {
                 var savedCards = localStorage.getItem('cards');
-                var cards = [{ given: [], when: [], then: []}];
+                var cards = [{ given: [], when: [], then: [], passing: false }];
 
                 if (savedCards && savedCards != '')
                 {
