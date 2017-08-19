@@ -17,17 +17,54 @@
     </head>
     <body>
         <h1 class="header">Given - When - Then</h1>
+        <div id="help-text" class="hidden">
+            <p>This is a tool for describing test scenarios in the Given-When-Then format. We've set you up with some sample data. Have a play around!</p>
+            <p>All changes will be saved to your local storage for when you come back.</p>
+        </div>
         <div id="root"></div>
 
         <script>
             window.onload = function()
             {
                 var savedCards = localStorage.getItem('cards');
-                var cards = [{ given: [], when: [], then: [], passing: false }];
+                var cards = 
+                [{ 
+                    given: ['I am typing in the Given block of a test case'], 
+                    when: ['I press the Enter key'], 
+                    then: 
+                    [
+                        'a new line should be added to the Given block',
+                        'the cursor should move to the new line'
+                    ], 
+                    passing: true 
+                },
+                {
+                    given: 
+                    [
+                        'a filled-out test case',
+                        'the test is passing'
+                    ],
+                    when: ['I click the tick-box next to it'],
+                    then: 
+                    [
+                        'the box should become ticked',
+                        'and the test should turn green'
+                    ],
+                    passing: false
+                },
+                {
+                    given: ['a test case that I no longer need'],
+                    when: ['I click the X next to it'],
+                    then: ['it should disappear from my life']
+                }];
 
                 if (savedCards && savedCards != '')
                 {
                     cards = JSON.parse(savedCards);
+                }
+                else
+                {
+                    document.getElementById('help-text').className = "";
                 }
 
                 ReactDOM.render(

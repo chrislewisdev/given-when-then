@@ -17,6 +17,16 @@ body
     padding-bottom:10px;
 }
 
+#help-text
+{
+    text-align:center;
+}
+
+.hidden
+{
+    display:none;
+}
+
 .body
 {
     width:95%;
@@ -73,7 +83,7 @@ body
 
 .group .row
 {
-    border-bottom:1px dashed rgba(160,160,160,0.4);
+    border-bottom:1px dashed rgba(105,105,105,0.4);
     display:flex;
     padding-top:3px;
     padding-bottom:3px;
